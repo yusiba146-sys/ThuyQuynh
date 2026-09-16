@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>♡ A Little Story About You</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{--pink:#ff6f9f;--pink2:#ffb6d0;--soft:#fff4f8;--red:#ff4f7b;--dark:#241b24;--border:#3b2b35;--shadow:7px 7px 0 #3b2b35}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:'Quicksand',sans-serif;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.95),transparent 25%),radial-gradient(circle at 80% 80%,rgba(255,150,190,.35),transparent 30%),linear-gradient(135deg,#ffdce9,#fff8fb 45%,#ffc8dc);color:var(--dark)}
+#particles{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.particle{position:absolute;pointer-events:none;user-select:none;animation:floatUp linear infinite;opacity:.7}
+@keyframes floatUp{0%{transform:translateY(110vh) rotate(0deg) scale(.7);opacity:0}10%{opacity:.75}90%{opacity:.75}100%{transform:translateY(-15vh) rotate(360deg) scale(1.1);opacity:0}}
+.desktop{position:relative;width:100%;height:100%;z-index:1;display:flex;align-items:center;justify-content:center;padding:25px}
+.window{position:relative;width:min(930px,94vw);height:min(720px,91vh);background:rgba(255,250,253,.88);border:3px solid var(--border);border-radius:16px;box-shadow:var(--shadow),0 25px 80px rgba(110,42,73,.18);backdrop-filter:blur(12px);overflow:hidden;display:flex;flex-direction:column}
+.titlebar{height:53px;min-height:53px;background:repeating-linear-gradient(0deg,#ff91b6 0,#ff91b6 3px,#ff7ca8 3px,#ff7ca8 6px);border-bottom:3px solid var(--border);display:flex;align-items:center;padding:0 15px;gap:13px}
+.traffic{display:flex;gap:7px}.traffic span{width:14px;height:14px;border:2px solid var(--border);border-radius:50%;background:#fff}
+.title{flex:1;text-align:center;font-family:'Space Mono',monospace;font-size:12px;font-weight:bold;letter-spacing:.5px}.title-right{width:50px;text-align:right;font-size:19px}
+.desktop-content{flex:1;position:relative;overflow:hidden}
+.screen{position:absolute;inset:0;padding:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;transform:translateX(60px) scale(.96);pointer-events:none;transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+.screen.active{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}.screen.exit{opacity:0;transform:translateX(-60px) scale(.96)}
+.kitty{position:relative;width:76px;height:58px;margin-bottom:10px}.kitty-face{position:absolute;width:62px;height:49px;left:7px;top:8px;background:#fff;border:3px solid var(--border);border-radius:48% 48% 45% 45%}
+.kitty-face:before,.kitty-face:after{content:"";position:absolute;width:6px;height:5px;background:var(--border);border-radius:50%;top:22px}.kitty-face:before{left:13px}.kitty-face:after{right:13px}
+.nose{position:absolute;width:8px;height:6px;background:#f2bd39;border:2px solid var(--border);border-radius:50%;top:28px;left:25px}
+.bow{position:absolute;right:-2px;top:1px;width:29px;height:25px}.bow:before,.bow:after{content:"";position:absolute;width:20px;height:19px;background:var(--red);border:3px solid var(--border)}
+.bow:before{left:0;transform:rotate(28deg);border-radius:65% 20% 65% 20%}.bow:after{right:0;transform:rotate(-28deg);border-radius:20% 65% 20% 65%}.bow span{position:absolute;z-index:3;left:10px;top:8px;width:10px;height:10px;background:#ff719b;border:2px solid var(--border);border-radius:50%}
+.eyebrow{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:#b34e73;margin-bottom:8px}
+h1{font-size:clamp(31px,6vw,65px);line-height:1;letter-spacing:-2px;margin-bottom:17px}.gradient-text{background:linear-gradient(90deg,#ff4f7b,#bd5bff,#ff4f7b);background-size:200%;-webkit-background-clip:text;color:transparent;animation:gradient 4s linear infinite}
+@keyframes gradient{to{background-position:200%}}
+.subtitle{max-width:570px;font-size:15px;line-height:1.8;color:#624c58}.start-card{margin-top:25px;padding:17px 23px;border:2px dashed #d9789b;background:#fff5fa;border-radius:12px;font-size:13px;color:#815466}.start-button{margin-top:25px}
+button{font-family:'Quicksand',sans-serif;cursor:pointer}.btn{border:3px solid var(--border);background:#fff;padding:12px 25px;border-radius:9px;font-weight:800;font-size:14px;color:var(--dark);box-shadow:5px 5px 0 var(--border);transition:.15s ease}.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--border)}.btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--border)}.btn-pink{background:linear-gradient(135deg,#ff6d9c,#ffabc7)}.btn-dark{background:#30242c;color:white}
+.memory-layout{width:100%;height:100%;display:flex;flex-direction:column;align-items:center}.memory-number{align-self:flex-start;font-family:'Space Mono',monospace;font-size:11px;color:#a45170;margin-bottom:10px}
+.photo-frame{position:relative;width:min(390px,63vw);height:min(410px,49vh);padding:10px;background:white;border:3px solid var(--border);box-shadow:8px 8px 0 rgba(61,43,53,.9),-5px 5px 0 #ff9cba;transform:rotate(-1.2deg)}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block;border:2px solid #ead6de}.tape{position:absolute;width:90px;height:22px;background:rgba(255,208,222,.85);border:1px solid #e5aabc;top:-12px;left:50%;transform:translateX(-50%) rotate(2deg);z-index:3}
+.memory-text{max-width:600px;margin-top:20px}.memory-text h2{font-size:clamp(21px,4vw,30px);margin-bottom:8px}.memory-text p{font-size:14px;line-height:1.7;color:#66505c}.nav-row{display:flex;gap:10px;margin-top:17px}
+.final-heart{font-size:72px;animation:heartBeat 1.25s ease-in-out infinite;margin-bottom:8px;filter:drop-shadow(0 8px 8px rgba(255,70,120,.25))}
+@keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}.question{font-size:clamp(28px,5vw,48px);line-height:1.1;margin-bottom:15px}.question span{color:#ff4f7b}.final-note{max-width:560px;color:#654f5b;line-height:1.8;font-size:14px}
+.choice-area{position:relative;width:min(500px,90%);height:100px;margin-top:25px}.yes-btn{position:absolute;left:25%;transform:translateX(-50%);background:linear-gradient(135deg,#ff5c88,#ff9ebc)}.no-btn{position:absolute;left:75%;transform:translateX(-50%);background:#fff;z-index:10}
+.success{background:radial-gradient(circle at center,#fff,#fff0f6 55%,#ffd4e3)}.success h2{font-size:clamp(36px,7vw,66px);margin-bottom:13px}.success p{max-width:590px;line-height:1.8;font-size:15px;color:#634c58}.success .big-heart{font-size:100px;animation:successHeart 1.2s infinite alternate}
+@keyframes successHeart{from{transform:scale(.92) rotate(-5deg)}to{transform:scale(1.08) rotate(5deg)}}.restart{margin-top:25px}
+.progress{position:absolute;left:22px;right:22px;bottom:16px;height:7px;border:2px solid var(--border);border-radius:20px;background:#ffe4ee;overflow:hidden;z-index:20}.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#ff6c9c,#c678ff);transition:.5s ease}
+.music-player{position:fixed;right:20px;bottom:20px;z-index:100;display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,250,253,.9);border:2px solid var(--border);border-radius:30px;box-shadow:4px 4px 0 var(--border);backdrop-filter:blur(10px)}
+.music-button{width:37px;height:37px;border-radius:50%;border:2px solid var(--border);background:#ff91b5;display:grid;place-items:center;font-size:15px}.music-info{font-family:'Space Mono',monospace;font-size:9px;max-width:105px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#fireworks{position:fixed;inset:0;pointer-events:none;z-index:200}.firework{position:absolute;width:5px;height:5px;border-radius:50%;animation:explode 1.5s ease-out forwards}
+@keyframes explode{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
+.sticker{position:absolute;z-index:5;font-size:25px;user-select:none;animation:stickerFloat 3s ease-in-out infinite}.s1{left:22px;top:25px}.s2{right:30px;top:35px;animation-delay:1s}.s3{right:45px;bottom:50px;animation-delay:1.7s}.s4{left:35px;bottom:45px;animation-delay:.5s}
+@keyframes stickerFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(6deg)}}
+@media(max-width:650px){.desktop{padding:10px}.window{width:96vw;height:94vh;border-width:2px;box-shadow:4px 4px 0 var(--border)}.titlebar{height:45px;min-height:45px}.title{font-size:9px}.desktop-content{padding-bottom:0}.screen{padding:24px 18px 40px}h1{font-size:39px}.subtitle{font-size:13px}.photo-frame{width:min(320px,75vw);height:min(350px,42vh)}.memory-text{margin-top:15px}.memory-text h2{font-size:22px}.memory-text p{font-size:13px}.nav-row{margin-top:13px}.btn{padding:10px 18px;font-size:12px}.choice-area{width:100%;height:120px}.yes-btn{left:32%}.no-btn{left:68%}.music-player{right:10px;bottom:10px;padding:6px}.music-info{display:none}.sticker{font-size:19px}}
+img{user-select:none;-webkit-user-drag:none}
+</style>
+</head>
+<body>
+<div id="particles"></div>
+<div id="fireworks"></div>
+<main class="desktop">
+<section class="window">
+<header class="titlebar">
+<div class="traffic"><span></span><span></span><span></span></div>
+<div class="title">♡ MEMORY.EXE — personal little universe</div>
+<div class="title-right">♡</div>
+</header>
+<div class="desktop-content">
+<div class="sticker s1">☆</div><div class="sticker s2">♡</div><div class="sticker s3">✦</div><div class="sticker s4">♡</div>
+
+<section class="screen active" id="screen0">
+<div class="kitty"><div class="kitty-face"><div class="nose"></div></div><div class="bow"><span></span></div></div>
+<div class="eyebrow">WELCOME TO MY LITTLE WORLD</div>
+<h1>A story about<br><span class="gradient-text">you & me.</span></h1>
+<p class="subtitle">Có một nơi nhỏ xíu trong chiếc máy tính này, nơi anh đã cất vài khoảnh khắc mà anh không muốn quên.</p>
+<div class="start-card">✦ 4 memories detected<br>♡ 1 secret message locked<br>★ 1 person living rent-free in my mind</div>
+<button class="btn btn-pink start-button" onclick="nextScreen()">MỞ CUỘC HÀNH TRÌNH ĐI QUỲNH→</button>
+</section>
+
+<section class="screen" id="screen1"><div class="memory-layout">
+<div class="memory-number">MEMORY 01 / 04</div><div class="photo-frame"><div class="tape"></div><img src="girl1.jpg" alt="Memory 01"></div>
+<div class="memory-text"><h2>"Ngày đầu tiên để ý...
+"</h2><p>Em là 1 đứa rất chảnh, khó ưa, chả dễ thương và chẳng dễ chịu chút nào.Lần đầu anh gặp kiểu người khó ưa như em. <b>GHÉT VL</b> ♡</p></div>
+<div class="nav-row"><button class="btn" onclick="prevScreen()">← QUAY LẠI</button><button class="btn btn-pink" onclick="nextScreen()">TIẾP TỤC →</button></div>
+</div></section>
+
+<section class="screen" id="screen2"><div class="memory-layout">
+<div class="memory-number">MEMORY 02 / 04</div><div class="photo-frame"><div class="tape"></div><img src="girl2.jpg" alt="Memory 02"></div>
+<div class="memory-text"><h2>"Rồi anh bắt đầu thích..."</h2><p>Ban đầu anh
+     nghĩ chắc chỉ là cảm giác nhất thời.Nhưng không cả ngày hôm đó anh nghĩ về em cả buổi trời. Sáng, trưa, tối. 
+     À không nhầm đấy  <b>còn lúc không có lý do nữa.</b> :))</p></div>
+<div class="nav-row"><button class="btn" onclick="prevScreen()">← QUAY LẠI</button><button class="btn btn-pink" onclick="nextScreen()">TIẾP TỤC →</button></div>
+</div></section>
+
+<section class="screen" id="screen3"><div class="memory-layout">
+<div class="memory-number">MEMORY 03 / 04</div><div class="photo-frame"><div class="tape"></div><img src="girl3.jpg" alt="Memory 03"></div>
+<div class="memory-text"><h2>"Em có một siêu năng lực..."</h2><p>Đó chắc chắn là biến một ngày bình thường thành một đứa chỉ biết đi chửi em.
+     Chẳng cần làm gì quá đặc biệt, chỉ cần em xuất hiện thôi là có thể khiến anh phát dồ ra đó.</b> ♡</p></div>
+<div class="nav-row"><button class="btn" onclick="prevScreen()">← QUAY LẠI</button><button class="btn btn-pink" onclick="nextScreen()">TIẾP TỤC →</button></div>
+</div></section>
+
+<section class="screen" id="screen4"><div class="memory-layout">
+<div class="memory-number">MEMORY 04 / 04</div><div class="photo-frame"><div class="tape"></div><img src="girl4.jpg" alt="Memory 04"></div>
+<div class="memory-text"><h2>"Và đến 1 lúc nào đấy anh
+     nhận ra..."</h2><p>Anh không muốn nhìn em rơi vào ai khác ngoài anh cả. 
+    Anh muốn bản thân anh được chăm sóc em, long lắng cho em rồi sau này có thể nói to rằng là ý: <b>"May mà ngày đó mình đã nói."</b> ♡</p></div>
+<div class="nav-row"><button class="btn" onclick="prevScreen()">← QUAY LẠI</button><button class="btn btn-pink" onclick="nextScreen()">CUỐI CÙNG ANH CÓ ĐIỀU MUỐN NÓI...</button></div>
+</div></section>
+
+<section class="screen" id="screen5">
+<div class="final-heart">♡</div><div class="eyebrow">SECRET MESSAGE UNLOCKED</div>
+<h2 class="question">Quỳnh ơii<br><span>làm người thương của anh nhé?</span></h2>
+<p class="final-note">Anh không hứa sẽ biến mọi ngày thành một bộ phim hoàn hảo cho em.
+     Nhưng anh có thể hứa rằng anh sẽ luôn trân trọng những khoảnh khắc có em trong đó.<br><br>Vậy nên là ý cho anh một cơ hội được ở cạnh em lâu hơn một chút nhé emyeu=)) ♡</p>
+<div class="choice-area"><button class="btn btn-pink yes-btn" id="yesButton" onclick="acceptLove()">♡ ĐỒNG Ý</button><button class="btn no-btn" id="noButton" onmouseenter="runAway()" onclick="runAway()">TỪ CHỐI</button></div>
+</section>
+
+<section class="screen success" id="screen6">
+<div class="big-heart">💗</div><div class="eyebrow">LOVE.EXE SUCCESSFULLY INSTALLED</div><h2>YAYYYYY! ♡</h2>
+<p>Chúc mừng! Từ giờ Quỳnh đã chính thức có thêm một người quan trọng nhất.
+    <br><br>Cảm ơn em vì đã xuất hiện trong câu chuyện của anh. 
+    Hy vọng từ hôm nay, chúng ta sẽ cùng nhau tạo thêm thật nhiều <b>memory.jpg</b> đẹp hơn nữa. ♡<br><br><b>STATUS: TWO HEARTS CONNECTED ♥</b></p>
+<button class="btn btn-pink restart" onclick="location.reload()">↻ XEM LẠI TỪ ĐẦU</button>
+</section>
+
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+</div></section></main>
+
+<div class="music-player"><button class="music-button" id="musicButton" onclick="toggleMusic()" title="Phát nhạc">▶</button><div class="music-info">♫ love-song.mp3</div></div>
+<audio id="music" loop preload="auto"><source src="love-song.mp3" type="audio/mpeg"></audio>
+
+<script>
+let currentScreen=0;const totalScreens=6;const screens=document.querySelectorAll(".screen");const progressBar=document.getElementById("progressBar");
+function showScreen(index){if(index<0)index=0;if(index>totalScreens)index=totalScreens;screens.forEach((screen,i)=>{screen.classList.remove("active","exit");if(i<index)screen.classList.add("exit")});screens[index].classList.add("active");currentScreen=index;progressBar.style.width=(index/totalScreens*100)+"%"}
+function nextScreen(){if(currentScreen<totalScreens){showScreen(currentScreen+1);createTinySparkles()}}
+function prevScreen(){if(currentScreen>0)showScreen(currentScreen-1)}
+const noButton=document.getElementById("noButton");let escapeCount=0;
+function runAway(){escapeCount++;const padding=20,maxX=window.innerWidth-noButton.offsetWidth-padding,maxY=window.innerHeight-noButton.offsetHeight-padding;let x=Math.max(padding,Math.random()*maxX),y=Math.max(padding,Math.random()*maxY);noButton.style.position="fixed";noButton.style.left=x+"px";noButton.style.top=y+"px";noButton.style.transform=`rotate(${Math.random()*20-10}deg)`;const messages=["Không được đâu 😭","Bắt hụt rồi nha ♡","Nút này có chân đó!","Ấy ấy đừng bấm :))","Cho mình cơ hội đi mà 🥺","Em chạy thì mình chạy theo!","404: Nút từ chối not found","Không cho từ chối đâu ♡"];noButton.innerText=messages[Math.min(escapeCount-1,messages.length-1)];createTinySparkles()}
+window.addEventListener("resize",()=>{if(currentScreen!==5){noButton.style.position="";noButton.style.left="";noButton.style.top=""}});
+function acceptLove(){launchFireworks();setTimeout(()=>showScreen(6),850);document.getElementById("music").play().catch(()=>{})}
+function launchFireworks(){const container=document.getElementById("fireworks");container.innerHTML="";const colors=["#ff4f7b","#ff91b5","#ffd166","#b78cff","#72d9ff","#ffffff"];for(let burst=0;burst<10;burst++){const centerX=10+Math.random()*80,centerY=15+Math.random()*55;for(let i=0;i<42;i++){const p=document.createElement("div");p.className="firework";p.style.left=centerX+"%";p.style.top=centerY+"%";const angle=Math.PI*2*i/42,distance=60+Math.random()*180;p.style.setProperty("--x",Math.cos(angle)*distance+"px");p.style.setProperty("--y",Math.sin(angle)*distance+"px");p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.boxShadow="0 0 8px currentColor";p.style.animationDelay=Math.random()*.15+"s";container.appendChild(p)}}setTimeout(()=>container.innerHTML="",2200)}
+const particleContainer=document.getElementById("particles"),symbols=["♡","♥","☆","✦","✧","⋆","♡"];
+function createParticle(){const p=document.createElement("div");p.className="particle";p.innerText=symbols[Math.floor(Math.random()*symbols.length)];p.style.left=Math.random()*100+"%";p.style.fontSize=10+Math.random()*19+"px";p.style.animationDuration=8+Math.random()*12+"s";p.style.animationDelay=Math.random()*-15+"s";p.style.opacity=.2+Math.random()*.6;particleContainer.appendChild(p);setTimeout(()=>p.remove(),22000)}
+for(let i=0;i<30;i++)createParticle();setInterval(createParticle,900);
+document.addEventListener("mousemove",e=>{const x=e.clientX/window.innerWidth-.5,y=e.clientY/window.innerHeight-.5;document.querySelectorAll(".sticker").forEach((s,i)=>{const power=8+i*3;s.style.marginLeft=x*power+"px";s.style.marginTop=y*power+"px"})});
+function createTinySparkles(){for(let i=0;i<12;i++){const s=document.createElement("div");s.innerText=Math.random()>.5?"✦":"♡";s.style.position="fixed";s.style.left=30+Math.random()*40+"%";s.style.top=30+Math.random()*40+"%";s.style.zIndex="150";s.style.pointerEvents="none";s.style.fontSize=10+Math.random()*20+"px";s.style.color="#ff6d9d";s.style.transition="all 1s ease";document.body.appendChild(s);requestAnimationFrame(()=>{s.style.transform=`translate(${(Math.random()-.5)*250}px,${(Math.random()-.5)*250}px) scale(0)`;s.style.opacity="0"});setTimeout(()=>s.remove(),1000)}}
+const music=document.getElementById("music"),musicButton=document.getElementById("musicButton");let playing=false;
+function toggleMusic(){if(playing){music.pause();musicButton.innerText="▶";playing=false}else{music.play().then(()=>{musicButton.innerText="❚❚";playing=true}).catch(()=>alert("Hãy đặt file love-song.mp3 cùng thư mục với index.html nhé ♡"))}}
+music.addEventListener("play",()=>{playing=true;musicButton.innerText="❚❚"});music.addEventListener("pause",()=>{playing=false;musicButton.innerText="▶"});
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")nextScreen();if(e.key==="ArrowLeft")prevScreen()});
+showScreen(0);
+</script>
+</body>
+</html>
